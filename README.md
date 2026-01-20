@@ -6,6 +6,18 @@ A beautiful terminal user interface (TUI) application built with Go and Charm li
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
+## 📸 Screenshots
+
+### Todo Management
+
+![Todo Tab](docs/todos.png)
+_Manage your tasks with visual completion indicators and clean organization_
+
+### Timer Functionality
+
+![Timer Tab](docs/timers.png)
+_Track time with named timers and real-time status updates_
+
 ## ✨ Features
 
 ### 📝 Todo Management
