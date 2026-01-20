@@ -1,113 +1,247 @@
-# AI TUI - Todo and Timer Application
+# Productivity TUI
 
-A terminal user interface (TUI) application built with Go and Charm libraries (Bubble Tea, Lip Gloss, and Bubbles) that provides todo list management and timer functionality.
+A beautiful terminal user interface (TUI) application built with Go and Charm libraries for managing todos and timers with automatic data persistence.
 
-## Features
+![Productivity TUI](https://img.shields.io/badge/Go-1.19+-blue.svg)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-### Todo Tab
+## ✨ Features
 
-- Add new todos with the `n` key
-- Delete todos with the `d` key (with confirmation modal)
-- Toggle todo completion with `space` or `enter`
-- Navigate todos with arrow keys or `j`/`k`
-- Visual indicators for completed items (strikethrough, checkmarks)
+### 📝 Todo Management
 
-### Timer Tab
+- **Add todos** with `n` key - type title and save
+- **Toggle completion** with `space`/`enter` - visual checkmarks and strikethrough
+- **Delete todos** with `d` key - confirmation modal for safety
+- **Navigate** with `j`/`k` or arrow keys
+- **Persistent storage** - todos saved automatically
 
-- Create custom named timers with the `n` key
-- Delete timers with the `d` key (with confirmation modal)
-- Start/stop timers with `space` or `enter`
-- Reset timers with the `r` key
-- Navigate timers with arrow keys or `j`/`k`
-- Visual indicators for running (green), stopped, and finished (red) timers
+### ⏱️ Timer Functionality
 
-### Navigation
+- **Create timers** with `n` key - name your work sessions
+- **Start/stop** with `space`/`enter` - real-time countdown
+- **Reset timers** with `r` key - back to 00:00
+- **Visual status** - running (green) vs stopped indicators
+- **Two-line display** - timer name and status/elapsed time
+- **Background counting** - timers run even when viewing todos
 
-- Switch tabs with `tab`, `h`/`l`, or left/right arrow keys
-- Move up/down lists with `j`/`k` or up/down arrow keys
-- Exit application with `ctrl+c` or `q`
+### 🎨 Modern Interface
 
-## Installation and Usage
+- **Clean design** with purple accent colors
+- **Tab navigation** - switch between todos and timers
+- **Contextual help** - single-line help at bottom
+- **Confirmation modals** - prevent accidental deletions
+- **Responsive layout** - proper spacing and typography
+
+### 💾 Data Persistence
+
+- **Automatic saving** - data saved on quit and every 30 seconds
+- **JSON storage** - human-readable format in `~/.config/productivity-tui/`
+- **Cross-platform** - works on Windows, Linux, and macOS
+- **Graceful recovery** - handles missing/corrupt data files
+
+## 🚀 Installation & Usage
 
 ### Prerequisites
 
-- Go 1.19 or higher
+- **Go 1.19 or higher** - [Download Go](https://golang.org/dl/)
 
-### Running the Application
+### Quick Start
 
 ```bash
-# Clone or navigate to the project directory
-cd ai-tui
+# Clone the repository
+git clone <repository-url>
+cd productivity-tui
 
-# Run the application
+# Run directly
 go run .
 
 # Or build and run
-go build -o ai-tui
-./ai-tui
+go build -o productivity-tui
+./productivity-tui
 ```
 
-## Controls Reference
+### Platform-Specific Builds
 
-### Global Controls
+#### Windows
 
-- `tab` / `h` / `l` / `←` / `→` - Switch between tabs
-- `ctrl+c` / `q` - Quit application
+```powershell
+# Build for Windows
+go build -o productivity-tui.exe .
 
-### List Navigation
+# Run
+.\productivity-tui.exe
 
-- `j` / `k` / `↑` / `↓` - Navigate up/down in lists
-- `n` - Add new item (todo or timer)
-- `d` - Delete selected item (shows confirmation modal)
-
-### Todo Specific
-
-- `space` / `enter` - Toggle todo completion
-
-### Timer Specific
-
-- `space` / `enter` - Start/stop timer
-- `r` - Reset timer to original duration
-
-### Confirmation Modal
-
-- `y` / `enter` - Confirm action
-- `n` / `esc` - Cancel action
-
-### Adding Items
-
-- When adding a todo: Type the todo title and press `enter`
-- When adding a timer:
-  1. Type the timer name and press `enter`
-  2. Type the duration in minutes and press `enter`
-- `esc` - Cancel adding item
-
-## Dependencies
-
-- [Bubble Tea](https://github.com/charmbracelet/bubbletea) - TUI framework
-- [Lip Gloss](https://github.com/charmbracelet/lipgloss) - Terminal styling
-- [Bubbles](https://github.com/charmbracelet/bubbles) - TUI components
-
-## Project Structure
-
-```
-ai-tui/
-├── main.go      # Application entry point
-├── model.go     # Main application model and state management
-├── todo.go      # Todo list functionality
-├── timer.go     # Timer functionality
-├── modal.go     # Confirmation modal component
-├── go.mod       # Go module file
-└── README.md    # This file
+# Cross-compile from other platforms
+GOOS=windows GOARCH=amd64 go build -o productivity-tui.exe .
 ```
 
-## Example Usage
+#### Linux
 
-1. Start the application with `go run .`
-2. Use the todo tab to manage your tasks
-3. Switch to the timer tab with `tab`
-4. Create pomodoro timers or custom work sessions
-5. Use `d` to delete items with confirmation
-6. Exit with `ctrl+c`
+```bash
+# Build for Linux
+go build -o productivity-tui .
 
-Enjoy your productive TUI experience! 🚀
+# Make executable and run
+chmod +x productivity-tui
+./productivity-tui
+
+# Cross-compile from other platforms
+GOOS=linux GOARCH=amd64 go build -o productivity-tui .
+```
+
+#### macOS
+
+```bash
+# Build for macOS
+go build -o productivity-tui .
+
+# Run
+./productivity-tui
+
+# Cross-compile from other platforms
+GOOS=darwin GOARCH=amd64 go build -o productivity-tui-intel .     # Intel Macs
+GOOS=darwin GOARCH=arm64 go build -o productivity-tui-apple .     # Apple Silicon Macs
+```
+
+### Install as System Command
+
+```bash
+# Build and install to system PATH
+go build -o productivity-tui .
+sudo mv productivity-tui /usr/local/bin/
+
+# Now run from anywhere
+productivity-tui
+```
+
+## 🎮 Controls Reference
+
+### Global Navigation
+
+- **`tab`** / **`h`** / **`l`** / **`←`** / **`→`** - Switch between Todo and Timer tabs
+- **`q`** / **`Ctrl+C`** - Quit application (auto-saves data)
+
+### List Navigation & Actions
+
+- **`j`** / **`k`** / **`↑`** / **`↓`** - Navigate up/down in lists
+- **`n`** - Add new item (todo or timer)
+- **`d`** - Delete selected item (shows confirmation)
+
+### Todo-Specific
+
+- **`space`** / **`enter`** - Toggle todo completion
+- Type title when adding, press `enter` to save
+
+### Timer-Specific
+
+- **`space`** / **`enter`** - Start/stop timer
+- **`r`** - Reset timer to 00:00
+- Type name when adding, press `enter` to save
+
+### Modals & Input
+
+- **`y`** / **`enter`** - Confirm deletion
+- **`n`** / **`esc`** - Cancel action or input
+- **Type freely** when adding items (navigation disabled during input)
+
+## 📁 Data Storage
+
+Your data is automatically saved to:
+
+- **Windows**: `%USERPROFILE%\.config\productivity-tui\data.json`
+- **Linux/macOS**: `~/.config/productivity-tui/data.json`
+
+Sample data structure:
+
+```json
+{
+  "todos": [
+    { "title": "Review pull requests", "completed": false },
+    { "title": "Update documentation", "completed": true }
+  ],
+  "timers": [
+    { "name": "Deep Work", "elapsed_seconds": 1547.5, "running": false },
+    { "name": "Break Time", "elapsed_seconds": 0.0, "running": false }
+  ]
+}
+```
+
+## 🛠️ Development
+
+### Project Structure
+
+```
+productivity-tui/
+├── main.go         # Application entry point
+├── model.go        # Main model and state management
+├── todo.go         # Todo list functionality
+├── timer.go        # Timer functionality and tick messages
+├── modal.go        # Confirmation modal component
+├── persistence.go  # JSON data saving/loading
+├── go.mod          # Go module dependencies
+├── go.sum          # Dependency checksums
+└── README.md       # This documentation
+```
+
+### Dependencies
+
+- **[Bubble Tea](https://github.com/charmbracelet/bubbletea)** - TUI framework and event handling
+- **[Lip Gloss](https://github.com/charmbracelet/lipgloss)** - Terminal styling and colors
+
+### Building from Source
+
+```bash
+# Get dependencies
+go mod download
+
+# Run tests (if any)
+go test ./...
+
+# Build
+go build -ldflags="-s -w" -o productivity-tui .
+
+# Run
+./productivity-tui
+```
+
+## 🎯 Use Cases
+
+- **Pomodoro Technique** - Create 25-minute work timers
+- **Task Management** - Track daily todos with completion status
+- **Time Tracking** - Monitor time spent on different activities
+- **Minimal Productivity** - Distraction-free terminal environment
+- **Developer Workflow** - Keep it running in a terminal while coding
+
+## 🔧 Troubleshooting
+
+### Data File Issues
+
+```bash
+# Check if data file exists
+ls -la ~/.config/productivity-tui/
+
+# Reset data (delete file)
+rm ~/.config/productivity-tui/data.json
+
+# Fix permissions (Linux/macOS)
+chmod 755 ~/.config/productivity-tui/
+chmod 644 ~/.config/productivity-tui/data.json
+```
+
+### Build Issues
+
+```bash
+# Update dependencies
+go mod tidy
+
+# Clear module cache
+go clean -modcache
+
+# Rebuild
+go build .
+```
+
+---
+
+**Start being productive with style! 🚀**
